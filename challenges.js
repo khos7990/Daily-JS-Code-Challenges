@@ -43,5 +43,78 @@ function isPangram(string) {
 //If a value is present in b, all of its occurrences must be removed from the other:
 
 function arrayDiff(a, b) {
-  return a.filter(e => !b.includes(e))
+  return a.filter((e) => !b.includes(e));
+}
+
+//4. Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+// HH = hours, padded to 2 digits, range: 00 - 99
+// MM = minutes, padded to 2 digits, range: 00 - 59
+// SS = seconds, padded to 2 digits, range: 00 - 59
+// The maximum time never exceeds 359999 (99:59:59)
+
+function humanReadable(seconds) {
+  let hours = "";
+  let minutes = "";
+  let remainingTime = "";
+
+  if (seconds === 0) return "00:00:00";
+  //calculation for hours
+  if (seconds / 3600 >= 1) {
+    remainingTime = seconds / 3600;
+    hours = seconds / 3600;
+    hours = hours | 0;
+    remainingTime = remainingTime - hours;
   }
+  if (hours <= 9 && hours >= 1) {
+    hours = "0" + hours;
+  } else if (hours >= 10) {
+    hours = hours;
+  } else {
+    hours = "00";
+    remainingTime = -1;
+  }
+  //calculation for minutes
+  if (remainingTime >= 0) {
+    minutes = remainingTime * 60;
+    minutes = minutes | 0;
+  } else {
+    minutes = seconds / 60;
+    minutes = minutes | 0;
+    remainingTime = seconds % 60;
+  }
+
+  if (minutes < 1) {
+    minutes = "00";
+  } else if (minutes <= 9) {
+    minutes = "0" + minutes;
+  } else {
+    minutes = minutes;
+  }
+
+  //calculation for seconds
+  if (minutes % 1 !== 0) {
+    seconds = minutes % 1;
+    seconds = Math.round(seconds * 60);
+  } else {
+    seconds = seconds % 60;
+  }
+
+  if (seconds < 1) {
+    seconds = "00";
+  } else if (seconds <= 9) {
+    seconds = "0" + seconds;
+  } else {
+    seconds = seconds;
+  }
+
+  return hours + ":" + minutes + ":" + seconds;
+}
+
+//Best Practice 
+//function humanReadable(seconds) {
+//   var pad = function(x) { return (x < 10) ? "0"+x : x; }
+//   return pad(parseInt(seconds / (60*60))) + ":" +
+//          pad(parseInt(seconds / 60 % 60)) + ":" +
+//          pad(seconds % 60)
+// }
