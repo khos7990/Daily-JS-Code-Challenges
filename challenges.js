@@ -111,10 +111,37 @@ function humanReadable(seconds) {
   return hours + ":" + minutes + ":" + seconds;
 }
 
-//Best Practice 
+//Best Practice
 //function humanReadable(seconds) {
 //   var pad = function(x) { return (x < 10) ? "0"+x : x; }
 //   return pad(parseInt(seconds / (60*60))) + ":" +
 //          pad(parseInt(seconds / 60 % 60)) + ":" +
 //          pad(seconds % 60)
+// }
+
+//5. What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none.
+function anagrams(word, words) {
+  let wordArr = word.split("");
+  let results = [];
+  wordArr = wordArr.sort().join("");
+
+  for (let i = 0; i < words.length; i++) {
+    let newWord = words[i].split("");
+    newWord = newWord.sort().join("");
+    if (newWord === wordArr) {
+      results.push(words[i]);
+    }
+  }
+
+  return results;
+}
+//Best Practice
+// String.prototype.sort = function() {
+//   return this.split("").sort().join("");
+// };
+
+// function anagrams(word, words) {
+//   return words.filter(function(x) {
+//       return x.sort() === word.sort();
+//   });
 // }
