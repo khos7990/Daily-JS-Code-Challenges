@@ -145,3 +145,24 @@ function anagrams(word, words) {
 //       return x.sort() === word.sort();
 //   });
 // }
+
+//6. Check if numbers are prime numbers or not. Return true or false.
+
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i++) {
+    if (num % [i] === 0) return false;
+  }
+  return true;
+}
+//More efficient Answer
+
+// function isPrime2(n) {
+//   if (isNaN(n) || !isFinite(n) || n % 1 || n < 2) return false;
+//   if (n % 2 == 0) return (n == 2);
+//   var m = Math.sqrt(n);
+//   for (var i = 3; i <= m; i += 2) {
+//       if (n % i == 0) return false;
+//   }
+//   return true;
+// }
