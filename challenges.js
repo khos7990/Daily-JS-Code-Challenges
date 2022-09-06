@@ -177,3 +177,37 @@ function removeEnds(str) {
 
   return str.substring(1, str.length - 1);
 }
+
+//8.Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number
+// of characters then it should replace the missing second character of the final pair with an underscore ('_').
+
+//Answer
+function solution(str) {
+  if (str.length === 0) return [];
+  let newArr = str.match(/(..?)/g);
+  const lastItem = newArr[newArr.length - 1];
+  if (lastItem.length === 1) {
+    let addedItem = lastItem + "_";
+    newArr.splice(-1, 1, addedItem);
+  }
+  return newArr;
+}
+
+//otherways
+// function solution(s){
+//   return (s+"_").match(/.{2}/g)||[]
+// }
+
+//OR
+
+//   var i = 0;
+//   var result = new Array();
+//   if (str.length % 2 !== 0) {
+//     str = str + '_';
+//   }
+//   while (i < str.length) {
+//       result.push(str[i] + str[i+1]);
+//       i += 2;
+//     }
+//   return result;
+// }
