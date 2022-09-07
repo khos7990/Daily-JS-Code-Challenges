@@ -242,3 +242,32 @@ function sortArray(array) {
 //   const odd = array.filter((x) => x % 2).sort((a,b) => a - b);
 //   return array.map((x) => x % 2 ? odd.shift() : x);
 // }
+
+
+//10. Write a function that when given a URL as a string, parses out just the domain name and returns it as a string. 
+
+//Answer 
+
+function domainName(url){
+  let domain = url.split(".")
+   if ( domain[0].includes("www")) {
+     domain = domain[1]
+   } else {
+  domain = domain[0]
+     if (domain.includes("http")) {
+      domain =  domain.split("/")
+      domain = domain[2]
+     }
+     
+   }
+  
+  return domain
+  }
+  
+//best solution 
+// function domainName(url){
+//   url = url.replace("https://", '');
+//   url = url.replace("http://", '');
+//   url = url.replace("www.", '');
+//   return url.split('.')[0];
+// };
